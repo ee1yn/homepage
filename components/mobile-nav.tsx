@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Menu, X } from "lucide-react"
+import { Menu } from "lucide-react"
 
 const links = [
   { href: "#about", label: "About" },
@@ -25,24 +25,25 @@ export function MobileNav() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" className="md:hidden" size="icon">
-          <Menu className="h-5 w-5" />
-          <span className="sr-only">Toggle menu</span>
+        <Button 
+          variant="ghost" 
+          className="md:hidden p-0 hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0" 
+          size="icon"
+        >
+          <Menu className="h-6 w-6" />
+          <span className="sr-only">打开菜单</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-lg font-semibold">Menu</h2>
-          <Button variant="ghost" size="icon" onClick={() => setOpen(false)}>
-            <X className="h-5 w-5" />
-          </Button>
-        </div>
-        <nav className="flex flex-col gap-4">
+      <SheetContent 
+        side="right" 
+        className="w-[280px] border-l-neutral-200 bg-white/95 backdrop-blur-md"
+      >
+        <nav className="flex flex-col items-center justify-center h-full">
           {links.map((link) => (
             <button
               key={link.href}
               onClick={() => scrollToSection(link.href.substring(1))}
-              className="text-lg font-medium hover:text-primary transition-colors"
+              className="relative text-xl font-medium py-4 text-neutral-600 hover:text-black transition-colors after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-neutral-200 after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform"
             >
               {link.label}
             </button>
